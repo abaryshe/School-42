@@ -41,11 +41,6 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
 int	ft_strcmp(char *s1, char *s2)
 {
 	while ((*s1 && *s2) && *s1 == *s2)

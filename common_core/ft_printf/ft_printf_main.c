@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:53:54 by abaryshe          #+#    #+#             */
-/*   Updated: 2024/11/28 14:21:55 by abaryshe         ###   ########.fr       */
+/*   Updated: 2024/11/28 20:01:46 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,16 @@ int	main(void)
 	printf("------------------------------------------------\n");
 	printf("This is the adress of mem: \n%p\n", int_ptr);
 	free(int_ptr);
+	return (0);
+}
+
+int	main(void)
+{
+	int	a;
+
+	a = -2147483648;
+	ft_printf("This is the number: \n%d\nAnd here it is again: \n%i\n", a, a);
+	ft_printf("--------------------------------------------------------------------------");
+	printf("This is the number: \n%d\nAnd here it is again: \n%i\n", a, a);
 	return (0);
 }

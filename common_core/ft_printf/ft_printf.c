@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:10:41 by abaryshe          #+#    #+#             */
-/*   Updated: 2024/11/26 14:35:46 by abaryshe         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:54:08 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,48 @@ int	ft_print_str(const char *str)
 
 	len = 0;
 	while (str[len])
-	{
-		ft_print_char(str[len]);
-		len++;
-	}
+		len += ft_print_char(str[len]);
 	return (len);
+}
+
+int	ft_print_hex(size_t num)
+{
+	int		len;
+	char	*hex_low;
+	char	buffer[17];
+	int		index;
+
+	len = 0;
+	hex_low = "0123456789abcdef";
+	index = 0;
+	while (num)
+	{
+		buffer[index] = hex_low[num % 16];
+		num /= 16;
+		index++;
+	}
+	while (--index >= 0)
+		len += ft_print_char(buffer[index]);
+	return (len);
+}
+
+int	ft_print_hexptr(void *ptr)
+{
+	int		len;
+	size_t	adress;
+
+	len = 0;
+	len = ft_print_str("0x");
+	if (!ptr)
+		return (len + ft_print_char('0'));
+	adress = (size_t)ptr;
+	len += ft_print_hex(adress);
+	return (len);
+}
+
+int	ft_print_num(int num)
+{
+	
 }
 
 int	ft_print_format(const char *format, va_list args)
@@ -42,6 +79,10 @@ int	ft_print_format(const char *format, va_list args)
 		len = ft_print_str(va_arg(args, char *));
 	else if (*format == 'c')
 		len = ft_print_char(va_arg(args, int));
+	else if (*format == 'p')
+		len = ft_print_hexptr(va_arg(args, void *));
+	else if (*format == 'd' || *format == 'i')
+		len = ft_print_num(va_arg(args, int));
 	return (len);
 }
 
@@ -62,25 +103,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (len);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	char	*str;
-	char	ch;
-	int		len1;
-	int		len2;
-
-	str = "HELL YEAH";
-	ch = 'g';
-	len1 = ft_printf("WOW %% \nThis is my string: \n%s\nAnd this is my character: \n%c0\n",
-			str, ch);
-	printf("%d\n", len1);
-	printf("------------------------------------------------\n");
-	len2 = printf("WOW %% \nThis is my string: \n%s\nAnd this is my character: \n%c\nAnd this is an adress of the string: \n%p\n",
-			str, ch, &str);
-	printf("%d\n", len2);
-	return (0);
 }

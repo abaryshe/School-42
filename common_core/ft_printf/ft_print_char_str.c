@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_print_char_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 15:07:53 by abaryshe          #+#    #+#             */
-/*   Updated: 2024/11/21 11:04:06 by abaryshe         ###   ########.fr       */
+/*   Created: 2024/12/02 20:47:31 by abaryshe          #+#    #+#             */
+/*   Updated: 2024/12/02 20:48:00 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+int	ft_print_char(char c)
 {
-	t_list	*temp;
+	write(1, &c, 1);
+	return (1);
+}
 
-	if (!lst || !del)
-		return ;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = temp;
-	}
-	*lst = NULL;
+int	ft_print_str(const char *str)
+{
+	int	len;
+
+	len = 0;
+	if (str == NULL)
+		return (ft_print_str("(null)"));
+	while (str[len])
+		len += ft_print_char(str[len]);
+	return (len);
 }

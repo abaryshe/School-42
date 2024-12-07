@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 17:17:56 by abaryshe          #+#    #+#             */
-/*   Updated: 2024/12/06 18:37:38 by abaryshe         ###   ########.fr       */
+/*   Updated: 2024/12/06 18:50:01 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,25 +88,27 @@ char	*get_next_line(int fd)
 	}
 	line = ft_extract_line(rest);
 	rest = ft_trim_line(rest);
+	if (bytes_read == 0 && !rest)
+		free(rest);
 	return (line);
 }
 
-// #include <fcntl.h>
-// #include <stdio.h>
+#include <fcntl.h>
+#include <stdio.h>
 
-// int	main(int argc, char const *argv[])
-// {
-// 	int		fd;
-// 	int		count;
+int	main(int argc, char const *argv[])
+{
+	int		fd;
+	int		count;
 
-// 	if (argc != 2)
-// 		return (-1);
-// 	fd = open(argv[1], O_RDONLY);
-// 	count = 19;
-// 	while (count > 0)
-// 	{
-// 		printf("%s", get_next_line(fd));
-// 		count--;
-// 	}
-// 	return (0);
-// }
+	if (argc != 2)
+		return (-1);
+	fd = open(argv[1], O_RDONLY);
+	count = 19;
+	while (count > 0)
+	{
+		printf("%s", get_next_line(fd));
+		count--;
+	}
+	return (0);
+}

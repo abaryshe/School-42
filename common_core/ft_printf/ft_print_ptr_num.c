@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_formats.c                                :+:      :+:    :+:   */
+/*   ft_print_formats.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 20:48:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2024/12/03 10:15:29 by abaryshe         ###   ########.fr       */
+/*   Updated: 2024/12/07 03:59:47 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,27 +90,5 @@ int	ft_print_hex(unsigned int num, char format)
 	len = 0;
 	while (--index >= 0)
 		len += ft_print_char(buffer[index]);
-	return (len);
-}
-
-int	ft_print_format(const char *format, va_list args)
-{
-	int	len;
-
-	len = 0;
-	if (*format == '%')
-		len = ft_print_char('%');
-	else if (*format == 's')
-		len = ft_print_str(va_arg(args, char *));
-	else if (*format == 'c')
-		len = ft_print_char(va_arg(args, int));
-	else if (*format == 'p')
-		len = ft_print_ptr(va_arg(args, void *));
-	else if (*format == 'd' || *format == 'i')
-		len = ft_print_num(va_arg(args, int));
-	else if (*format == 'u')
-		len = ft_print_u(va_arg(args, unsigned int));
-	else if (*format == 'x' || *format == 'X')
-		len = ft_print_hex(va_arg(args, unsigned int), *format);
 	return (len);
 }

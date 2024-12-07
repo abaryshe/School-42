@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:10:52 by abaryshe          #+#    #+#             */
-/*   Updated: 2024/12/03 10:18:22 by abaryshe         ###   ########.fr       */
+/*   Updated: 2024/12/07 03:53:28 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-int	printf(const char *format, ...);
-
+int	ft_printf(const char *format, ...);
 int	ft_print_format(const char *format, va_list args);
+
 int	ft_print_char(char c);
 int	ft_print_str(const char *str);
 int	ft_print_ptr(void *ptr);

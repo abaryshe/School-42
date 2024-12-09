@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:10:41 by abaryshe          #+#    #+#             */
-/*   Updated: 2024/12/07 03:59:16 by abaryshe         ###   ########.fr       */
+/*   Updated: 2024/12/09 10:49:44 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	int		len;
 
+	if (!format)
+		return (-1);
 	va_start(args, format);
 	len = 0;
 	while (*format)
@@ -164,5 +166,8 @@ int	main(void)
 	printf("ft_printf: %d\n", len1);
 	ft_printf("-----------------------------------------------\n");
 	printf("printf: %d\n", len2);
+	printf("\n");
+	printf("%d\n", ft_printf(0));
+	printf("%d\n", printf(0));
 	return (0);
 }*/

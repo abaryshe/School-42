@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 17:17:56 by abaryshe          #+#    #+#             */
-/*   Updated: 2024/12/12 13:10:54 by abaryshe         ###   ########.fr       */
+/*   Created: 2024/12/12 10:27:43 by abaryshe          #+#    #+#             */
+/*   Updated: 2024/12/12 13:15:42 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_free_rest(char **rest)
 {
@@ -97,15 +97,15 @@ char	*ft_read_to_rest(int fd, char *rest)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*rest;
+	static char	*rest[OPEN_MAX];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (0);
-	rest = ft_read_to_rest(fd, rest);
-	if (!rest)
+	rest[fd] = ft_read_to_rest(fd, rest[fd]);
+	if (!rest[fd])
 		return (NULL);
-	line = ft_extract_line(rest);
-	rest = ft_trim_rest(rest);
+	line = ft_extract_line(rest[fd]);
+	rest[fd] = ft_trim_rest(rest[fd]);
 	return (line);
 }
 /*
@@ -114,21 +114,38 @@ char	*get_next_line(int fd)
 
 int	main(int argc, char const *argv[])
 {
-	int		fd;
+	int		fd1;
+	int		fd2;
+	int		fd3;
 	int		count;
 	char	*line;
 
-	if (argc != 2)
-		return (-1);
-	fd = open(argv[1], O_RDONLY);
-	count = 19;
-	while (count > 0 || line != NULL)
+	(void)argc;
+	fd1 = open(argv[1], O_RDONLY);
+	fd2 = open(argv[2], O_RDONLY);
+	fd3 = open(argv[3], O_RDONLY);
+	count = 52;
+	while (count > 0)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(fd1);
 		printf("%s", line);
+		if (line == NULL)
+			printf("\n");
+		free(line);
+		line = get_next_line(fd2);
+		printf("%s", line);
+		if (line == NULL)
+			printf("\n");
+		free(line);
+		line = get_next_line(fd3);
+		printf("%s", line);
+		if (line == NULL)
+			printf("\n");
 		free(line);
 		count--;
 	}
-	close(fd);
+	close(fd1);
+	close(fd2);
+	close(fd3);
 	return (0);
 }*/

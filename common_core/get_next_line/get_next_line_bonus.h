@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 17:19:25 by abaryshe          #+#    #+#             */
-/*   Updated: 2024/12/11 08:34:33 by abaryshe         ###   ########.fr       */
+/*   Created: 2024/12/12 10:27:07 by abaryshe          #+#    #+#             */
+/*   Updated: 2024/12/12 10:32:03 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
+# endif
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 256
 # endif
 
 char	*get_next_line(int fd);
